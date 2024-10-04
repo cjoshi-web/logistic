@@ -22,111 +22,114 @@
         </p-card>
     </div>
     <div class="col-12 md:col-4 flex-order-0 md:flex-order-1">
-        <p-card header="Shipment Form" >
-            <div class="grid p-fluid">
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <input pInputText />
-                        <label>Invoice #</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <p-calendar />
-                        <label>Invoice Date</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <p-dropdown [options]="consignees" [(ngModel)]="selectedConsignee" optionLabel="name" />
-                        <label>Consignee</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <p-dropdown [options]="shippers" [(ngModel)]="selectedShipper" optionLabel="name"/>
-                        <label>Shipper</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-12 lg:col-12 md:col-12 sm:col-12">
-                    <p-floatLabel>
-                        <p-chips [(ngModel)]="brandList" />
-                        <label>Brands Name</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <p-inputNumber/>
-                        <label>Quantity</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <p-inputNumber/>
-                        <label>Quantity Set</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <p-inputNumber />
-                        <label>Cartons</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <p-inputNumber />
-                        <label>Pallets</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <p-inputNumber [minFractionDigits]="2" />
-                        <label>Amount</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <p-dropdown [options]="currancy" [(ngModel)]="selectedCurrancy" optionLabel="name"/>
-                        <label>Currancy</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <p-inputNumber [minFractionDigits]="2" />
-                        <label>Net Weight</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <p-inputNumber [minFractionDigits]="2" />
-                        <label>Gross Weight</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <p-inputNumber [minFractionDigits]="2" />
-                        <label>Gross Weight + PLTS</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
-                    <p-floatLabel>
-                        <p-dropdown [options]="incoTerms" [(ngModel)]="selectedIncoTerms" optionLabel="name"/>
-                        <label>Inco Terms</label>
-                    </p-floatLabel>
-                </div>
-                <div class="field col-12">
-                    <p-floatLabel>
-                        <input pInputText/>
-                        <label>Customer Ref #</label>
-                    </p-floatLabel>
+
+        <p-card header="Shipment Form">
+            <form [formGroup]="shipmentForm" (ngSubmit)="onSubmit()">
+                <div class="grid p-fluid">
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <input pInputText formControlName="invoiceNumber"/>
+                            <label>Invoice #</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <p-calendar formControlName="invoiceDate"/>
+                            <label>Invoice Date</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <p-dropdown [options]="consignees" formControlName="consignee" optionLabel="name" />
+                            <label>Consignee</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <p-dropdown [options]="shippers" formControlName="shipper" optionLabel="name" />
+                            <label>Shipper</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-12 lg:col-12 md:col-12 sm:col-12">
+                        <p-floatLabel>
+                            <p-chips formControlName="brandList" />
+                            <label>Brands Name</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <p-inputNumber formControlName="qty"/>
+                            <label>Quantity</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <p-inputNumber formControlName="qtySet"/>
+                            <label>Quantity Set</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <p-inputNumber formControlName="ctns"/>
+                            <label>Cartons</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <p-inputNumber formControlName="pallets"/>
+                            <label>Pallets</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <p-inputNumber [minFractionDigits]="2" formControlName="amount"/>
+                            <label>Amount</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <p-dropdown [options]="currancy" formControlName="currancy" optionLabel="name" />
+                            <label>Currancy</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <p-inputNumber [minFractionDigits]="2" formControlName="netWeight" />
+                            <label>Net Weight</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <p-inputNumber [minFractionDigits]="2" formControlName="grossWeight"/>
+                            <label>Gross Weight</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <p-inputNumber [minFractionDigits]="2" formControlName="grossWeightPallet" />
+                            <label>Gross Weight + PLTS</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <p-dropdown [options]="incoTerms" formControlName="incoTerms" optionLabel="name" />
+                            <label>Inco Terms</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12">
+                        <p-floatLabel>
+                            <input pInputText formControlName="customerTrackingId"/>
+                            <label>Customer Ref #</label>
+                        </p-floatLabel>
+                    </div>
                 </div>
                 <div class="field col-12 sm:col-6 md:col-12 lg:col-6">
-                    <p-button label="Add Shipment" [raised]="true" severity="primary" icon="pi pi-plus"/>
+                    <p-button label="Add Shipment" [raised]="true" severity="primary" icon="pi pi-plus" type="submit" />
                 </div>
                 <div class="field col-12 sm:col-6 md:col-12 lg:col-6 ">
-                    <p-button label="Clear" [raised]="true" severity="warning" icon="pi pi-eraser"/>
+                    <p-button label="Clear" [raised]="true" severity="warning" icon="pi pi-eraser" />
                 </div>
-            </div>
+            </form>
         </p-card>
     </div>
 </div>

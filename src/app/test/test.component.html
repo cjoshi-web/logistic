@@ -1,18 +1,6 @@
-<table>
-    <thead>
-        <tr>
-            <td>Key</td>
-            <td>Title</td>
-            <td>URL</td>
-        </tr>
-    </thead>
-    <tbody>
-        @for (tutorial of (tutorials$ | async); track $index) {
-            <tr>
-                <td>{{ tutorial.key }}</td>
-                <td>{{ tutorial.title }}</td>
-                <td>{{ tutorial.url }}</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div>
+    <form [formGroup]="userForm" (ngSubmit)="addTutorial()">
+        <input pInputText formControlName="test" type="text"/>
+        <button type="submit">Add</button>
+    </form>
+</div>

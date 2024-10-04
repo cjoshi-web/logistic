@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { map, Observable } from 'rxjs';
-import { TestService } from '../services/test.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 export interface Tutorial {
   key?: string | null;
@@ -12,29 +11,20 @@ export interface Tutorial {
 @Component({
   selector: 'app-test',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ReactiveFormsModule ],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css'
 })
 export class TestComponent {
 
-  tutorials$: Observable<Tutorial[]>;
-
-  constructor(private testService: TestService) { 
-    this.tutorials$ = this.testService.getAll()
-    const test = this.testService.create({} as Tutorial)
-    this.addTutorial();
+  userForm: FormGroup
+  
+  constructor(private fb: FormBuilder) { 
+    this.userForm = this.fb.group({
+      test: ['']
+    });
   }
   addTutorial(){
-    this.testService.create({} as Tutorial)
-    .then(()=>{
-      console.log("data added");
-    })
-    .catch((error: any) => {
-      console.log(error);
-    })
-    .finally(() => {
-      // Optional: Perform cleanup or logging here
-    })
+    console.log(this.userForm.value)
   }
 }
