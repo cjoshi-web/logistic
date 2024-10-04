@@ -1,4 +1,4 @@
-export interface PaymentInterface {
+export interface PaymentModel {
     paymentDate : Date,
     paymentID : string,
     allFees : number,

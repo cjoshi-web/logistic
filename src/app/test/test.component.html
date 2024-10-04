@@ -1,0 +1,18 @@
+<table>
+    <thead>
+        <tr>
+            <td>Key</td>
+            <td>Title</td>
+            <td>URL</td>
+        </tr>
+    </thead>
+    <tbody>
+        @for (tutorial of (tutorials$ | async); track $index) {
+            <tr>
+                <td>{{ tutorial.key }}</td>
+                <td>{{ tutorial.title }}</td>
+                <td>{{ tutorial.url }}</td>
+            </tr>
+        }
+    </tbody>
+</table>

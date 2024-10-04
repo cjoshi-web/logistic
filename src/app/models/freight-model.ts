@@ -1,4 +1,4 @@
-export interface FreightForwarderInterface {
+export interface FreightModel {
     gsNumber : string,
     serviceBy : string,
     freightForwarderName : string,

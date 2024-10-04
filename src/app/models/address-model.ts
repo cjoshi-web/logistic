@@ -1,5 +1,5 @@
-export interface AddressInterface {
-    addressId: number;
+export interface AddressModel {
+    key?: string;
     companyName: string,
     address: string,
     state: string,

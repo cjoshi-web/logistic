@@ -1,4 +1,4 @@
-export interface ShipmentTrackingInterface {
+export interface TrackingModel {
     ETD_estimatedTimeOfDeparture : Date,
     ATD_actualTimeOfDeparture : Date,
     ETA_estimatedTimeOfArrival : Date,

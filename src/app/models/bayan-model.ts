@@ -1,4 +1,4 @@
-export interface BayanInterface {
+export interface BayanModel {
     declarationDate : Date,
     declarationNumber : string,
     invoiceAmountInOMR : number,
