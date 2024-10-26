@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { MenubarComponent } from './menubar/menubar.component';
 
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -15,5 +14,4 @@ import { MenubarComponent } from './menubar/menubar.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent{
-
 }

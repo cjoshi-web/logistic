@@ -11,8 +11,8 @@ import { ChipsModule } from 'primeng/chips';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
 import { PrimeNGConfig } from 'primeng/api';
-import { ShipmentModel } from '../models/shipment-model';
 import { AddressModel } from '../models/address-model';
+import CurrencyList from 'currency-list'
 
 @Component({
   selector: 'app-shipment',
@@ -36,12 +36,16 @@ import { AddressModel } from '../models/address-model';
 export class ShipmentComponent implements OnInit {
 
   shipmentForm!: FormGroup;
-  shipment!: ShipmentModel;
-
   consigneeList!: AddressModel;
   shipperList!: AddressModel;
+  currancyList: Object[]
 
   constructor(private primengConfig: PrimeNGConfig, private formBuilder: FormBuilder) {
+    
+    this.currancyList = Object.values(CurrencyList.getAll('en_US'))
+
+    console.log(this.currancyList)
+
     this.shipmentForm = this.formBuilder.group({
       invoiceNumber: ['', Validators.required],
       invoiceDate: ['', Validators.required],
@@ -83,12 +87,7 @@ export class ShipmentComponent implements OnInit {
     { name: "CFR" },
     { name: "CIF" },
   ]
-  currancy = [
-    { name: "AED" },
-    { name: "OMR" },
-    { name: "USD" },
-    { name: "EUR" },
-  ]
+  
   invoices = [
     { code: "abc", name: "xyz", category: "xyz", quantity: 52 }
   ]

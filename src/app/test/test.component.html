@@ -1,6 +1,18 @@
-<div>
-    <form [formGroup]="userForm" (ngSubmit)="addTutorial()">
-        <input pInputText formControlName="test" type="text"/>
-        <button type="submit">Add</button>
-    </form>
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Company Name</th>
+            <th scope="col">Country</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (data of (addresses$ | async); track $index) {
+        <tr>
+            <td>{{ data.key }}</td>
+            <td>{{ data.companyName }}</td>
+            <td>{{ data.country }}</td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,1 +1,83 @@
-<p>tracking works!</p>
+<div class="grid flex">
+    <div class="col-12 md:col-8 flex-order-1 md:flex-order-0">
+        <p-card header="Tracking List">
+            <p-table [value]="addresses" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Country</th>
+                        <th>Contact Person</th>
+                        <th>Mobile</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-address>
+                    <tr>
+                        <td>{{ address.companyName }}</td>
+                        <td>{{ address.country }}</td>
+                        <td>{{ address.contactPerson }}</td>
+                        <td>{{ address.contactNumber }}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-4 flex-order-0 md:flex-order-1">
+
+        <p-card header="Tracking Form">
+            <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+                <div class="grid p-fluid">
+                    <div class="field col-12">
+                        <p-floatLabel>
+                            <input pInputText formControlName="ETD_estimatedTimeOfDeparture" />
+                            <label>ETD</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12">
+                        <p-floatLabel>
+                            <input pInputText formControlName="ATD_actualTimeOfDeparture" />
+                            <label>ATD</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <input pInputText formControlName="ETA_estimatedTimeOfArrival" />
+                            <label>ETA</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <input pInputText formControlName="ATA_actualTimeOfArrival" />
+                            <label>ATA</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <input pInputText formControlName="clearanceDate" />
+                            <label>Clearance Date</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <input pInputText formControlName="dcInDate" />
+                            <label>DC In Date</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12">
+                        <p-floatLabel>
+                            <input pInputText formControlName="storeInDate" />
+                            <label>Store In Date</label>
+                        </p-floatLabel>
+                    </div>
+
+                    <div class="field col-12 sm:col-6 md:col-12 lg:col-6">
+                        <p-button label="Add Tracking" [raised]="true" severity="primary" icon="pi pi-plus"
+                            type="submit" />
+                    </div>
+                    <div class="field col-12 sm:col-6 md:col-12 lg:col-6 ">
+                        <p-button label="Clear" [raised]="true" severity="warning" icon="pi pi-eraser" />
+                    </div>
+                </div>
+            </form>
+        </p-card>
+    </div>
+</div>

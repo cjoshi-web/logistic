@@ -1,18 +1,89 @@
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Company Name</th>
-            <th scope="col">Country</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (data of (addresses$ | async); track $index) {
-        <tr>
-            <td>{{ data.key }}</td>
-            <td>{{ data.companyName }}</td>
-            <td>{{ data.country }}</td>
-        </tr>
-        }
-    </tbody>
-</table>
+<div class="grid flex">
+    <div class="col-12 md:col-8 flex-order-1 md:flex-order-0">
+        <p-card header="Address List">
+            <p-table [value]="addresses" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Country</th>
+                        <th>Contact Person</th>
+                        <th>Mobile</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-address>
+                    <tr>
+                        <td>{{ address.companyName }}</td>
+                        <td>{{ address.country }}</td>
+                        <td>{{ address.contactPerson }}</td>
+                        <td>{{ address.contactNumber }}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-4 flex-order-0 md:flex-order-1">
+
+        <p-card header="Address Form">
+            <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+                <div class="grid p-fluid">
+                    <div class="field col-12">
+                        <p-floatLabel>
+                            <input pInputText formControlName="companyName" />
+                            <label>Company Name</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12">
+                        <p-floatLabel>
+                            <input pInputText formControlName="address" />
+                            <label>Company Address</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <input pInputText formControlName="state" />
+                            <label>State</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <input pInputText formControlName="country" />
+                            <label>Country</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <input pInputText formControlName="vatin" />
+                            <label>Vatin</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <input pInputText formControlName="contactPerson" />
+                            <label>Contact Person</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <input pInputText formControlName="contactNumber" />
+                            <label>Mobile Number</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field col-12 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+                        <p-floatLabel>
+                            <input pInputText formControlName="contactEmail" />
+                            <label>Email</label>
+                        </p-floatLabel>
+                    </div>
+
+                    <div class="field col-12 sm:col-6 md:col-12 lg:col-6">
+                        <p-button label="Add Address" [raised]="true" severity="primary" icon="pi pi-plus"
+                            type="submit" />
+                    </div>
+                    <div class="field col-12 sm:col-6 md:col-12 lg:col-6 ">
+                        <p-button label="Clear" [raised]="true" severity="warning" icon="pi pi-eraser" />
+                    </div>
+                </div>
+            </form>
+        </p-card>
+    </div>
+</div>

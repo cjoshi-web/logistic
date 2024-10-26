@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { CompanyService } from '../services/company.service';
+import { Observable } from 'rxjs';
+import { AddressModel } from '../models/address-model';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 export interface Tutorial {
   key?: string | null;
@@ -11,20 +13,15 @@ export interface Tutorial {
 @Component({
   selector: 'app-test',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule ],
+  imports: [CommonModule],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css'
 })
 export class TestComponent {
-
-  userForm: FormGroup
   
-  constructor(private fb: FormBuilder) { 
-    this.userForm = this.fb.group({
-      test: ['']
-    });
-  }
-  addTutorial(){
-    console.log(this.userForm.value)
+  addresses$: Observable<AddressModel[]>
+
+  constructor(private db: CompanyService) {
+    this.addresses$ = this.db.getAll();
   }
 }
