@@ -1,0 +1,110 @@
+<div class="flex justify-content-end">
+    <!-- <p-button label="Add Shipment" [raised]="true" severity="warning" icon="pi pi-pen-to-square"
+        (onClick)="showDialog()" /> -->
+    <p-button label="Add Shipment" [raised]="true" severity="warning" icon="pi pi-pen-to-square"
+        (onClick)="sidebarVisible = true" />
+</div>
+<div class="card flex justify-content-center mb-5">
+    <p-dialog header="Shipment Form" [(visible)]="visible" [modal]="true"
+        [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '50vw' }" [draggable]="true"
+        [resizable]="true" [maximizable]="true">
+
+        <app-shipment></app-shipment>
+
+    </p-dialog>
+</div>
+<div class="card">
+    <p-toast />
+    <p-table #dt1 [value]="(shipments$ | async)!" selectionMode="single" [(selection)]="selectedProduct" dataKey="key"
+        (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
+        [globalFilterFields]="['key', 'invoiceNumber', 'status']" [rows]="10" [paginator]="true"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [(contextMenuSelection)]="selectedProduct" [contextMenu]="cm">
+
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <span class="p-input-icon-left w-2">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+                        placeholder="Global Search" class="w-12" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <!-- <tr>
+                <th>
+                    <p-columnFilter type="text" field="id" [showClearButton]="false" />
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="invoiceeNumber" [showClearButton]="false" />
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="consigneeName" [showClearButton]="false" />
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="brandName" [showClearButton]="false" />
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="QTY" [showClearButton]="false" />
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="pallets" [showClearButton]="false" />
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="amount" [showClearButton]="false" />
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="status" [showClearButton]="false" />
+                </th>
+            </tr> -->
+            <tr>
+                <th pSortableColumn="key" style="width:12%">
+                    UUID <p-sortIcon field="key" />
+                </th>
+                <th pSortableColumn="invoiceNumber" style="width:20%">
+                    Invoice Number <p-sortIcon field="invoiceNumber" />
+                </th>
+                <th pSortableColumn="consigneeName" style="width:20%">
+                    Consignee <p-sortIcon field="consigneeName" />
+                </th>
+                <th pSortableColumn="brandList" style="width:10%">
+                    Brands <p-sortIcon field="brandList" />
+                </th>
+                <th pSortableColumn="QTY" style="width:10%">
+                    Quntity <p-sortIcon field="QTY" />
+                </th>
+                <th pSortableColumn="pallets" style="width:10%">
+                    Pallets <p-sortIcon field="pallets" />
+                </th>
+                <th pSortableColumn="amount" style="width:10%">
+                    Amount <p-sortIcon field="amount" />
+                </th>
+                <th pSortableColumn="status" style="width:10%">
+                    Status <p-sortIcon field="status" />
+                </th>
+            </tr>
+
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr [pSelectableRow]="product" [pContextMenuRow]="product">
+                <td>{{ product.key }}</td>
+                <td>{{ product.invoiceNumber }}</td>
+                <td>{{ product.consignee.name }}</td>
+                <td>{{ product.brandList }}</td>
+                <td>{{ product.qty }}</td>
+                <td>{{ product.pallets }}</td>
+                <td>
+                    {{ product.amount }} {{product.currancy.code}}
+                </td>
+                <td>
+                    <p-tag [value]="product.status" [severity]="getSeverity(product.status)" />
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <p-contextMenu #cm [model]="items"></p-contextMenu>
+</div>
+<p-sidebar [(visible)]="sidebarVisible" position="right" styleClass="p-sidebar-md">
+    <h3>New Shipment</h3>
+    <app-shipment></app-shipment>
+</p-sidebar>

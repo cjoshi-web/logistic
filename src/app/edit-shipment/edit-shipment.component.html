@@ -1,0 +1,252 @@
+<div class="flex justify-content-end">
+    <p-button label="Save Shipment" />
+</div>
+
+<div class="grid">
+    <div class="col">
+        <div class="card p-5">
+            <p-card header="Invoice Details" styleClass="shadow-7 p-5">
+                <div class="flex-column">
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Invoice No.</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Invoice Date</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Consignee</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Shipper</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Qunitity</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Qunitity Set</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Cartons</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Pallets</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Amount</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Net Weight</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Gross Weight</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Gross Weight + PLTS</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Inco Terms</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Customer ID</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card p-5">
+            <p-card header="Freight Details" styleClass="shadow-7 p-5">
+                <div class="flex-column">
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>GS #</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Service By</span>
+                        <span>
+                            <p-dropdown formControlName="selectedCity" [options]="serviceBy" optionLabel="type"
+                                placeholder="Select a Service" />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Freight Forwarder</span>
+                        <span>
+                            <p-dropdown formControlName="selectedCity" [options]="serviceBy" optionLabel="type"
+                                placeholder="Select a Freight Forwarder" />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Master AWB</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>House AWB</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Chargable Weight</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Volume In Cubic Meter</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Port Of Loading</span>
+                        <span>
+                            <p-dropdown formControlName="selectedCity" [options]="serviceBy" optionLabel="type"
+                                placeholder="Port Of Loading" />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Port Of Discharge</span>
+                        <span>
+                            <p-dropdown formControlName="selectedCity" [options]="serviceBy" optionLabel="type"
+                                placeholder="Port Of Discharge" />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Truck No.</span>
+                        <span>
+                            <p-dropdown formControlName="selectedCity" [options]="serviceBy" optionLabel="type"
+                                placeholder="Truck No." [filter]="true" filterBy="type" />
+                        </span>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card p-5">
+            <p-card header="Bayan Details" styleClass="shadow-7 p-5">
+                <div class="flex-column">
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Date</span>
+                        <span>
+                            <p-calendar formControlName="date" />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Declaration #</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Invoice Amount In OMR</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Freight Charge In OMR</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>Insurance Charge In OMR</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <span>CIF Value In OMR</span>
+                        <span>
+                            <input type="text" pInputText />
+                        </span>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </div>
+</div>
+
+<div class="card p-5">
+    <p-card header="Payments" styleClass="shadow-7 p-5 w-full">
+        <div class="flex justify-content-end mb-5">
+            <p-button label="Add Shipment" [raised]="true" severity="warning" icon="pi pi-pen-to-square"
+                (onClick)="addPayment()" />
+
+            <div class="card flex justify-content-center mb-5">
+                <p-dialog [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+                    [style]="{ width: '30vw' }" [draggable]="true" [resizable]="true" [maximizable]="true">
+
+                    <app-payment></app-payment>
+
+                </p-dialog>
+            </div>
+        </div>
+        <p-table [value]="payments" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Date</th>
+                    <th>Payment ID</th>
+                    <th>Custom Duty</th>
+                    <th>VAT Amount</th>
+                    <th>Total Amount</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>{{ product.code }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.quantity }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
+</div>

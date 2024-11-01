@@ -19,7 +19,7 @@ export class MenubarComponent implements OnInit {
       {
         label: 'Home',
         icon: 'pi pi-home',
-        routerLink: '/'
+        routerLink: '/home',
       },
       {
         label: 'Companies',
@@ -50,6 +50,21 @@ export class MenubarComponent implements OnInit {
         label: 'Track Shipment',
         icon: 'pi pi-spin pi-spinner',
         routerLink: '/tracking'
+      },
+      {
+        label: 'New Style Form',
+        icon: 'pi pi-building',
+        routerLink: '/demo'
+      },
+      {
+        label: 'Firebase Connection',
+        icon: 'pi pi-building',
+        routerLink: '/test'
+      },
+      {
+        label: 'AAA',
+        icon: 'pi pi-building',
+        routerLink: '/a'
       },
     ]
   }

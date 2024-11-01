@@ -13,6 +13,9 @@ import { ButtonModule } from 'primeng/button';
 import { PrimeNGConfig } from 'primeng/api';
 import { AddressModel } from '../models/address-model';
 import CurrencyList from 'currency-list'
+import { ShipmentModel } from '../models/shipment-model';
+import { Observable } from 'rxjs';
+import { ShipmentService } from '../services/shipment.service';
 
 @Component({
   selector: 'app-shipment',
@@ -38,13 +41,12 @@ export class ShipmentComponent implements OnInit {
   shipmentForm!: FormGroup;
   consigneeList!: AddressModel;
   shipperList!: AddressModel;
-  currancyList: Object[]
+  currancyList: Object[];
+  shipments$: Observable<ShipmentModel[]>
 
-  constructor(private primengConfig: PrimeNGConfig, private formBuilder: FormBuilder) {
-    
+  constructor(private primengConfig: PrimeNGConfig, private formBuilder: FormBuilder, private db: ShipmentService) {
+    this.shipments$ = db.getAll();
     this.currancyList = Object.values(CurrencyList.getAll('en_US'))
-
-    console.log(this.currancyList)
 
     this.shipmentForm = this.formBuilder.group({
       invoiceNumber: ['', Validators.required],
@@ -66,7 +68,9 @@ export class ShipmentComponent implements OnInit {
     });
   }
   onSubmit() {
-      console.log(this.shipmentForm.value);
+    const obj = this.shipmentForm.value
+    obj.status = "Upcomming"
+     this.db.create(obj)
   }
   ngOnInit() {
     this.primengConfig.ripple = true;
