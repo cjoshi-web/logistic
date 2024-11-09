@@ -6,6 +6,7 @@ import { TrackingModel } from "./tracking-model";
 
 
 export interface ShipmentModel {
+    key?: string,
     invoiceNumber: string,
     invoiceDate: Date,
     shipperAddress: AddressModel,

@@ -13,13 +13,14 @@
 
     </p-dialog>
 </div>
-<div class="card">
+<div class="">
     <p-toast />
     <p-table #dt1 [value]="(shipments$ | async)!" selectionMode="single" [(selection)]="selectedProduct" dataKey="key"
         (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
         [globalFilterFields]="['key', 'invoiceNumber', 'status']" [rows]="10" [paginator]="true"
         [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [(contextMenuSelection)]="selectedProduct" [contextMenu]="cm">
+        [(contextMenuSelection)]="selectedProduct" [contextMenu]="cm"
+        >
 
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
@@ -108,3 +109,5 @@
     <h3>New Shipment</h3>
     <app-shipment></app-shipment>
 </p-sidebar>
+
+{{a$ | async | json}}

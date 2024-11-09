@@ -11,6 +11,9 @@ import { ChipsModule } from 'primeng/chips';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
 import { PrimeNGConfig } from 'primeng/api';
+import { ShipmentService } from '../services/shipment.service';
+import { ActivatedRoute } from '@angular/router';
+import { ShipmentModel } from '../models/shipment-model';
 
 @Component({
   selector: 'app-freight',
@@ -35,8 +38,10 @@ export class FreightComponent {
   freights = [
     { code: "abc", name: "xyz", category: "xyz", quantity: 52 }
   ]
+  shipment$: any
+  shipmentId: string | null = '';
 
-  constructor(private primengConfig: PrimeNGConfig, private formBuilder: FormBuilder) {
+  constructor(private primengConfig: PrimeNGConfig, private formBuilder: FormBuilder, private db: ShipmentService, private route: ActivatedRoute) {
     
     this.freightForm = this.formBuilder.group({
       gsNumber: ['', Validators.required],
@@ -54,9 +59,15 @@ export class FreightComponent {
     });
   }
   onSubmit() {
+    this.db.update(this.shipmentId!, this.freightForm.value);
       console.log(this.freightForm.value);
   }
   ngOnInit() {
     this.primengConfig.ripple = true;
+    
+    this.route.paramMap.subscribe(params => {
+      this.shipmentId = params.get('id');
+      this.shipment$ = this.db.getShipmentById(this.shipmentId!)
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
 import { map, Observable } from 'rxjs';
 import { ShipmentModel } from '../models/shipment-model';
 
@@ -21,6 +21,9 @@ export class ShipmentService {
           ({ key: data.payload.key, ...data.payload.val() }) as ShipmentModel
         ))
     );
+  }
+  getShipmentById(id: string): Observable<any> {
+    return this.db.object(this.databasePath + "/" + id).snapshotChanges()
   }
 
   create(ShipmentModel: ShipmentModel): Promise<void> {

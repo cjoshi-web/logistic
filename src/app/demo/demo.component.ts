@@ -18,40 +18,43 @@ import { ShipmentService } from '../services/shipment.service';
 import { ShipmentModel } from '../models/shipment-model';
 import { Observable } from 'rxjs';
 
+
 @Component({
   selector: 'app-demo',
   standalone: true,
   imports: [
-    ButtonModule, 
-    DialogModule, 
-    ShipmentComponent, 
-    TableModule, 
-    ToastModule, 
-    TagModule, 
-    IconFieldModule, 
-    InputIconModule, 
-    InputTextModule, 
+    ButtonModule,
+    DialogModule,
+    ShipmentComponent,
+    TableModule,
+    ToastModule,
+    TagModule,
+    IconFieldModule,
+    InputIconModule,
+    InputTextModule,
     ContextMenuModule,
     CurrencyPipe,
     SidebarModule,
     CommonModule,
   ],
-    
+
   providers: [MessageService],
   templateUrl: './demo.component.html',
-  styleUrl: './demo.component.css'
+  styleUrl: './demo.component.css',
 })
 export class DemoComponent {
   items: MenuItem[] | undefined;
   visible: boolean = false;
   products: {}[] = [];
-  selectedProduct!: any;
+  selectedProduct!: ShipmentModel;
   sidebarVisible: boolean = false;
   shipments$: Observable<ShipmentModel[]>
+  a$: Observable<ShipmentModel>
 
   constructor(private primengConfig: PrimeNGConfig, private router: Router, private messageService: MessageService, private db: ShipmentService) {
     this.shipments$ = db.getAll();
-    console.log(this.shipments$)
+    this.a$ = this.db.getShipmentById("-OAdTzdgLwfiIBDIFS52")
+    
   }
 
   ngOnInit() {
@@ -60,61 +63,32 @@ export class DemoComponent {
       {
         label: "Freight Details",
         icon: 'pi pi-globe',
-        routerLink: '/freight',
-        command: () => this.deleteProduct(this.selectedProduct)
+        command: () => {
+          this.router.navigate(['/freight', this.selectedProduct.key ]);
+        }
       },
       {
         label: "Bayan Details",
         icon: 'pi pi-pen-to-square',
-        routerLink: '/bayan',
-        command: () => this.deleteProduct(this.selectedProduct)
-      }, 
+        command: () => {
+          this.router.navigate(['/bayan', this.selectedProduct.key]);
+        }
+      },
       {
         label: "Payment Details",
         icon: 'pi pi-paypal',
-        routerLink: '/payment',
-        command: () => this.deleteProduct(this.selectedProduct)
-      }, 
+        command: () => {
+          this.router.navigate(['/payment', this.selectedProduct.key]);
+        }
+      },
       {
         label: "Tracking Details",
         icon: 'pi pi-hourglass',
-        routerLink: '/tracking',
-        command: () => this.deleteProduct(this.selectedProduct)
-      }, 
+        command: () => {
+          this.router.navigate(['/tracking', this.selectedProduct.key]);
+        }
+      },
     ]
-    this.products.push({
-      "id": 1,
-      "invoiceeNumber": "APP-FZCO-OM-123",
-      "consigneeName": "Apparel Intenrational LLC",
-      "brandName": "Mix Brand",
-      "QTY": 36541,
-      "pallets": 23,
-      "amount": 1236543.32,
-      "status": "UPCOMMING",
-    })
-    this.products.push({
-      "id": 2,
-      "invoiceeNumber": "RB/FZCO/OM/256",
-      "consigneeName": "R&B FASHION LLC",
-      "brandName": "R&B",
-      "QTY": 123456,
-      "pallets": 12,
-      "amount": 361456.32,
-      "status": "UNDER CLEARANCE",
-    })
-    this.products.push({
-      "id": 3,
-      "invoiceeNumber": "RB/FZCO/OM/255",
-      "consigneeName": "R&B FASHION LLC",
-      "brandName": "R&B",
-      "QTY": 123456,
-      "pallets": 12,
-      "amount": 361456.32,
-      "status": "CLEARED",
-    })
-  }
-  deleteProduct(product: any){
-    console.log(product);
   }
   showDialog() {
     this.visible = true;
@@ -123,7 +97,8 @@ export class DemoComponent {
     this.router.navigate(['/editShipment', product.id])
   }
   onRowSelect(event: any) {
-    this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: event.data.invoiceNumber });
+    console.log(event.data)
+    this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: event.data.id });
   }
   onRowUnselect(event: any) {
     this.messageService.add({ severity: 'info', summary: 'Product Unselected', detail: event.data.invoiceNumber });

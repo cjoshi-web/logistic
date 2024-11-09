@@ -11,6 +11,9 @@ import { ChipsModule } from 'primeng/chips';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
 import { PrimeNGConfig } from 'primeng/api';
+import { CompanyService } from '../services/company.service';
+import { Observable } from 'rxjs';
+import { AddressModel } from '../models/address-model';
 
 
 @Component({
@@ -35,12 +38,11 @@ import { PrimeNGConfig } from 'primeng/api';
 export class CompanyComponent {
   
   addressForm!: FormGroup;
-  addresses = [
-    { code: "abc", name: "xyz", category: "xyz", quantity: 52 }
-  ]
+  addresses$: Observable<AddressModel[]>;
 
-  constructor(private primengConfig: PrimeNGConfig, private formBuilder: FormBuilder) {
-    
+  constructor(private primengConfig: PrimeNGConfig, private formBuilder: FormBuilder, private db: CompanyService) {
+    this.addresses$ = db.getAll();
+
     this.addressForm = this.formBuilder.group({
       companyName: ['', Validators.required],
       address: ['', Validators.required],
@@ -53,6 +55,9 @@ export class CompanyComponent {
     });
   }
   onSubmit() {
+    this.db.create(this.addressForm.value).then(res => {
+      console.log(res);
+    })
       console.log(this.addressForm.value);
   }
   ngOnInit() {

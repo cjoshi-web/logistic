@@ -1,0 +1,24 @@
+:host 
+    ::ng-deep 
+    
+    .p-datatable-header {
+        background-color: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(20%);
+
+        .ui-slider-range {
+            background: red;
+        }
+    }
+    
+    .p-sortable-column {
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10%);
+    }
+    .p-datatable-tbody > tr {
+        background-color: yellow !important;
+      } 
+    /* tr {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10%);
+    } */
+    
